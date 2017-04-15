@@ -1,0 +1,94 @@
+<div class="container"> 
+        <div class="row">
+
+            <div class="col-md-3"> 
+                <h1 class="lead"><b><%= @restaurant.name %></b></h1>
+                <% if current_user.try(:admin?) %>
+                <small><%=link_to "Edit",edit_restaurant_path,class:"btn btn-primary btn-mini" %></small>
+                <small><%=link_to "Delete",restaurant_path,method: :delete ,data: {confirm: "Are you sure you want to delete"} ,class:"btn btn-danger btn-mini" %></small>  
+                <% end %>  
+
+            <div class="span4">
+            <div class="widget map box-container padding30"> 
+             <h3 class="widget-title">Map</h3> 
+
+             <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d217758.28949932958!2d<%=@restaurant.longitude%>!3d<%=@restaurant.latitude%> !3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1488203570169" width="270" height="270" frameborder="0" style="border:0" allowfullscreen></iframe>                  
+            </div>     
+            </div>
+
+            </div>  
+
+
+            <div class="col-md-9">   
+                <div class="thumbnail">  
+                <%= image_tag @restaurant.image_url,class:"size" %>
+                    <div class="caption-full">
+
+                 <p><%=@restaurant.description %></p>      
+                <h4><b>Cuisine:</b> <%=@restaurant.category.name %></h4>
+                <h4><b>Address:</b> <%=@restaurant.address %></h4> 
+                <h4><b>City:</b> <%=@restaurant.city %></h4> 
+                <h4><b>Zipcode:</b> <%=@restaurant.zipcode %></h4>
+                <h4><b>Phone:</b> <%=@restaurant.phone %></h4> 
+                <h4><b>Email:</b> <%=@restaurant.email %></h4>  
+
+                    </div>  
+                </div>
+
+                <style type="text/css">
+                 .size {
+                 height:400px;
+                  width:400px; 
+                  }
+                </style> 
+
+                <div class="well">
+            <div class="text-right">
+           <%=link_to "Write Review",new_restaurant_review_path(@restaurant),class:"btn btn-success"%>     
+            </div>   
+
+             <h4>Reviews:</h4>    
+                   <hr>                      
+                   <table class="table"> 
+                     <thead>
+                    <th class="col-mid-3"></th> 
+                    <th class="col-mid-9"></th>                         
+                     </thead>
+                     <tbody>
+                <% @reviews.each do |review| %>    
+                <tr>
+                 <td>
+ <h5><b><%= "#{review.user.first_name}" " " "#{review.user.last_name}" %></b></h5>  
+                </td>
+                <td>
+ <div class="review-rating" data-score="<%=review.rating%>"></div>
+      <%= review.comment %>        
+               </td>    
+                     </tbody>
+                       
+                   </table> 
+            <% end %>                          
+                    
+
+                    <hr>                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+ $('.review-rating').raty({ 
+    readOnly: true,
+    score: function(){
+        return $(this).attr('data-score');
+    },
+    path: '/assets'
+ });    
+
+</script> 

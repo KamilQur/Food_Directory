@@ -1,0 +1,26 @@
+<div class="container page-content">
+<div class="row">
+<div class="span12">
+<div class="row">
+ <% if @restaurants.blank? %> 
+ <h3>Could not find the restaurant</h3>
+ <% else %>
+  <% @restaurants.each do |restaurant| %>   
+ <div class="col-md-3 col-sm-6 hero-feature">    
+                <div class="thumbnail">  
+          <%= link_to image_tag(restaurant.image_url.to_s),restaurant %>   
+                    <div class="caption">
+                        <h3><%= restaurant.name %></h3> 
+                        <p><%= restaurant.address %></p>
+               <%=link_to 'Get Info',restaurant,class: "btn btn-primary" %>
+                    </div> 
+            </div> 
+     </div>
+<% end %> 
+<% end %> 
+
+</div>
+</div>
+</div>
+</div>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ 
+
+<body>
+
+    <!-- Navigation -->
+   
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1 class="button">Welcome To Food Directory</h1> 
+            <p>Welcome to Food Directory where you can search new restaurants in your city in 30 miles.You can also review your favourite restaurants</p>  
+            <p class="button"><%=link_to 'Sign Up',new_user_registration_path ,class:"btn btn-primary" %></a> 
+            </p>
+            <div class="span4">  
+             <div class="search-form">
+                 <p>Search Restaurants</p> 
+              <%= form_tag search_restaurants_path,method: :get do |f| %>
+                <h4>Name</h4><%= text_field_tag :search,nil,placeholder: "steaks,burgers,Tikka,Karahi,Sushi etc" %>
+                <br/> 
+                <h4>Location</h4> 
+                <%= text_field_tag :location,nil,placeholder: "Lahore,Karachi,Islamabad etc" %> 
+                <br/>
+                <h4>Select Category</h4>  
+                <%= select_tag :category,options_for_select(Category.all.map{|c| [c.name,c.id]}) %>   
+                <br/> 
+                <%= submit_tag 'Search', class: "btn btn-success" %>  
+              <% end %>   
+             </div> 
+             <div class="pull-right">  
+<%= link_to "View all",search_restaurants_path,class: "btn btn-success" %>  
+            </div>
+            </div>  
+
+            <style>
+              .button {
+                text-align: center;
+              }
+
+            </style>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Restaurants</h3> 
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Page Features -->
+        <div class="row text-center">  
+          <% @restaurants.last(4).each do |restaurant| %>    
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail"> 
+          <%= link_to image_tag(restaurant.image_url.to_s),restaurant %>   
+                    <div class="caption">
+                        <h3><%= restaurant.name %></h3> 
+                        <p><%=restaurant.address %></p> 
+                        <p><%=restaurant.city %></p> 
+                        <p>
+                <%=link_to 'Get Info',restaurant,class:"btn btn-primary" %>
+                        </p> 
+                    </div>
+                </div>
+            </div>
+      <% end %> 
+                       
+        </div>
+        <!-- /.row -->
+
+        <hr>  
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html> 
