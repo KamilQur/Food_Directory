@@ -1,0 +1,29 @@
+
+
+development:
+  cloud_name: 'dww4bo2id'
+  api_key: '326873191898587'
+  api_secret: 'U44_H-2rpz_HgkPVLiG-oKlSKLI'
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: 'dww4bo2id'
+  api_key: '326873191898587' 
+  api_secret: 'U44_H-2rpz_HgkPVLiG-oKlSKLI' 
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: 'dww4bo2id'
+  api_key: '326873191898587'
+  api_secret: 'U44_H-2rpz_HgkPVLiG-oKlSKLI' 
+  enhance_image_tag: true
+  static_image_support: false
+
+
+
+
+
+
+
+
+

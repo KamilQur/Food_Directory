@@ -15,7 +15,7 @@ class Restaurant < ActiveRecord::Base
 geocoded_by :full_address 
 after_validation :geocode 
 
-mount_uploader :image,ImageUploader 
+  mount_uploader :image, ImageUploader   
 
 def full_address
  [address,city,state,zipcode].join(', ') 
