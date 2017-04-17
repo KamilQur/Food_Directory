@@ -20,10 +20,10 @@
              <div class="search-form">
                  <p>Search Restaurants</p> 
               <%= form_tag search_restaurants_path,method: :get do |f| %>
-                <h4>Name</h4><%= text_field_tag :search,nil,placeholder: "steaks,burgers,Tikka,Karahi,Sushi etc" %>
+                <h4>Name</h4><%= text_field_tag :search,nil,placeholder: "steaks,burgers,Sushi etc" %>
                 <br/> 
                 <h4>Location</h4> 
-                <%= text_field_tag :location,nil,placeholder: "Lahore,Karachi,Islamabad etc" %> 
+                <%= text_field_tag :location,nil,placeholder: "LA,Lahore,Newyork etc" %>  
                 <br/>
                 <h4>Select Category</h4>  
                 <%= select_tag :category,options_for_select(Category.all.map{|c| [c.name,c.id]}) %>   
